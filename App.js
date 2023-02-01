@@ -1,29 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import ColorBox from './components/ColorBox';
 
 export default function App() {
-  const header = 'Here are some boxes of different colors';
-
-  const data = [
-    {
-      name: 'Cyan',
-      colorHex: '#2aa198',
-    },
-    {
-      name: 'Blue',
-      colorHex: '#268bd2',
-    },
-    {
-      name: 'Magenta',
-      colorHex: '#d33682',
-    },
-    {
-      name: 'Orange',
-      colorHex: '#cb4b16',
-    },
-  ];
-
   const COLORS = [
     { colorName: 'Base03', hexCode: '#002b36' },
     { colorName: 'Base02', hexCode: '#073642' },
@@ -44,29 +24,32 @@ export default function App() {
   ];
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        {/* created a list */}
-        <FlatList
-          data={COLORS}
-          style={styles.boxContainer}
-          keyExtractor={(item) => item.colorName}
-          renderItem={({ item }) => (
-            <ColorBox name={item.colorName} color={item.hexCode} />
-          )}
-          ListHeaderComponent={
-            <Text style={styles.headerText}>
-              Here are some boxes of different colors
-            </Text>
-          }
-          // horizontal
-          // showsHorizontalScrollIndicator
-          // pagingEnabled
-        />
+    <NavigationContainer>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          {/* created a list */}
+          <FlatList
+            data={COLORS}
+            style={styles.boxContainer}
+            keyExtractor={(item) => item.colorName}
+            renderItem={({ item }) => (
+              <ColorBox name={item.colorName} color={item.hexCode} />
+            )}
+            ListHeaderComponent={
+              <Text style={styles.headerText}>
+                Here are some boxes of different colors
+              </Text>
+            }
+            // horizontal
+            // showsHorizontalScrollIndicator
+            // pagingEnabled
+          />
+          {/* <Text>Hello world</Text> */}
 
-        <StatusBar style="auto" />
-      </View>
-    </SafeAreaView>
+          <StatusBar style="auto" />
+        </View>
+      </SafeAreaView>
+    </NavigationContainer>
   );
 }
 
@@ -79,13 +62,13 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: '10px',
+    paddingHorizontal: 10,
     paddingTop: 40,
   },
 
   headerText: {
     color: '#000',
-    fontSize: '18px',
+    fontSize: 18,
     fontWeight: 'bold',
     width: '100%',
   },
